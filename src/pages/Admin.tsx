@@ -7,6 +7,7 @@ import { LogOut, Upload, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useDropzone } from "react-dropzone";
 import { useAuth } from "@/layouts/authContext";
+import { endpoints } from "@/endpoint-config";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Admin = () => {
       const credentials = localStorage.getItem("adminCredentials");
       if (!credentials) throw new Error("No credentials found");
 
-      const response = await fetch("https://tjwsa78et.app.n8n.cloud/webhook/documents", {
+      const response = await fetch(endpoints.uploadDocuments, {
         method: "POST",
         headers: {
           "Authorization": `Basic ${credentials}`,

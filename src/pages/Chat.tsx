@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Loader2, Send, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import {useAuth} from "@/layouts/authContext.ts";
+import { endpoints } from "@/endpoint-config";
 
 interface Message {
   type: "user" | "bot";
@@ -35,7 +36,7 @@ const Chat = () => {
       const credentials = localStorage.getItem("userCredentials");
       if (!credentials) throw new Error("No credentials found");
 
-      const response = await fetch("https://tjwsa78et.app.n8n.cloud/webhook/query", {
+      const response = await fetch(endpoints.query, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
